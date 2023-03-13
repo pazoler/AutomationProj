@@ -1,7 +1,6 @@
 package stepDefinitions;
 
-import io.cucumber.java.After;
-import io.cucumber.java.Before;
+
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
@@ -9,29 +8,14 @@ import io.cucumber.java.en.When;
 import junit.framework.Assert;
 import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
-import org.openqa.selenium.PageLoadStrategy;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
-import org.openqa.selenium.chrome.ChromeDriver;
-import org.openqa.selenium.chrome.ChromeOptions;
-import static org.junit.jupiter.api.Assertions.assertEquals;
+
+import static driver.DriverFactory.getDriver;
+
 
 public class ContactUsSteps {
-    private WebDriver driver;
-
-    @Before
-    public void setup() {
-        System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/drivers/chromedriver.exe");
-        ChromeOptions chromeOptions = new ChromeOptions();
-        chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
-        driver = new ChromeDriver(chromeOptions);
-        driver.manage().window().maximize();
-    }
-
-    @After
-    public void tearDown() {
-        driver.quit();
-    }
+    private WebDriver driver = getDriver();
 
     public String generateRandomNumber(int length) {
         return RandomStringUtils.randomNumeric(length);
@@ -97,4 +81,3 @@ public class ContactUsSteps {
         Assert.assertEquals(contactUs_Submission_Message.getText(), "Thank You for your Message!");
     }
 }
-
