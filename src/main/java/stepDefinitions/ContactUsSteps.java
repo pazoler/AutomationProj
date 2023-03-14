@@ -6,34 +6,27 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import junit.framework.Assert;
-import org.apache.commons.lang3.RandomStringUtils;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
+import pageObjects.BasePageObject;
 
-import static driver.DriverFactory.getDriver;
 
 
-public class ContactUsSteps {
+public class ContactUsSteps extends BasePageObject {
     private WebDriver driver = getDriver();
 
-    public String generateRandomNumber(int length) {
-        return RandomStringUtils.randomNumeric(length);
-    }
-
-    public String generateRandomString(int length) {
-        return RandomStringUtils.randomAlphabetic(length);
-    }
 
     @Given("I access the webdriver university contact us page")
     public void i_access_the_webdriver_university_contact_us_page() {
-        driver.get("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        navigateToURL("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
     }
 
     @When("I enter a unique first name")
     public void i_enter_a_unique_first_name() {
-        driver.findElement(By.xpath("//input[@name='first_name']")).sendKeys("AutoFN" + generateRandomNumber(5));
+        sendKeys(By.xpath("//input[@name='first_name']"), "AutoFN" + generateRandomNumber(5));
     }
+
 
     @And("I enter a unique last name")
     public void i_enter_a_unique_last_name() {
@@ -72,7 +65,7 @@ public class ContactUsSteps {
 
     @And("I click on the submit button")
     public void i_click_on_the_submit_button() {
-        driver.findElement(By.xpath("//input[@value=\"SUBMIT\"]")).click();
+        waitForWebElementAndClick(By.xpath("//input[@value=\"SUBMIT\"]"));
     }
 
     @Then("I should be presented with a successful contact us submission message")
