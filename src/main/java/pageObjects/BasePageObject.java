@@ -58,4 +58,14 @@ public class BasePageObject {
         String alertMessage = getDriver().switchTo().alert().getText();
         Assert.assertEquals(alertMessage, text);
     }
+
+    public void waitFor(WebElement element) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOf(element));
+    }
+
+    public void waitFor(By by) {
+        WebDriverWait wait = new WebDriverWait(getDriver(), Duration.ofSeconds(10));
+        wait.until(ExpectedConditions.visibilityOfAllElementsLocatedBy(by));
+    }
 }
