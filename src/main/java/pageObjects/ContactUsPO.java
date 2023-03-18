@@ -4,6 +4,7 @@ import junit.framework.Assert;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
+import utils.GlobalVariables;
 
 public class ContactUsPO extends BasePageObject {
     //private @FindBy(how = How.XPATH, using = "//input[@name='first_name']")
@@ -30,7 +31,7 @@ public class ContactUsPO extends BasePageObject {
     }
 
     public void navigateToWebDriverUniversityContactUsPage() {
-        navigateToURL("https://www.webdriveruniversity.com/Contact-Us/contactus.html");
+        navigateToURL(GlobalVariables.SITE_HOME_PAGE_URL + "/Contact-Us/contactus.html");
     }
 
     public void setUniqueFirstName() {
