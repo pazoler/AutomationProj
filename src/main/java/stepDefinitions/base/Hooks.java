@@ -15,6 +15,7 @@ import static driver.DriverFactory.getDriver;
 public class Hooks {
     @Before
     public void setup() {
+
         getDriver();
     }
 

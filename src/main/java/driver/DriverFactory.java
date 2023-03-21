@@ -29,6 +29,7 @@ public class DriverFactory {
                 System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/src/main/java/driver/drivers/chromedriver.exe");
                 ChromeOptions chromeOptions = new ChromeOptions();
                 chromeOptions.setPageLoadStrategy(PageLoadStrategy.NORMAL);
+                chromeOptions.addArguments("--remote-allow-origins=*","ignore-certificate-errors");
                 driver = new ChromeDriver(chromeOptions);
                 break;
             }
